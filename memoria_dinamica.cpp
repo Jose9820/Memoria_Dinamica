@@ -13,18 +13,16 @@ void mostrarNodos();
 
 int main(){
  	inicio=NULL;
- 	cout << "Cantidad de valores: ";
- 	int N;
- 	cin >> N;
- 	int valores[N];
- 	cout << endl;
- 	for (int i=0; i < N; i++){
- 		cout << "Ingrese el valor " << i+1 << ": ";
- 		cin >> valores[i];
-	 }
- 	for (int i=0; i < N; i++){
- 		insertarNodo(valores[i]);
-	 }
+ 	int respuesta, valor;
+ 	do{
+ 		cout << "Ingrese valor: ";
+ 		cin >> valor;
+ 		insertarNodo(valor);
+ 		cout << "\nQuiere agregar otro valor\n1.- Si\n2.- No\n: ";
+ 		cin >> respuesta;
+ 		system("cls");
+	 }while(respuesta == 1);
+ 	
  	cout << endl;
  	mostrarNodos();
   	cin.get();
