@@ -6,26 +6,44 @@ using namespace std;
 struct Nodo{
  	int dato;
  	struct Nodo *siguiente;
-}*inicio, *actual, *auxiliar;
+}*inicio, *actual, *auxiliar, *auxiliar1, *auxiliar2;
 
 void insertarNodo(int);
 void mostrarNodos();
+void ordenarDatos(int);
 
 int main(){
  	inicio=NULL;
- 	int respuesta, valor;
+ 	int respuesta, valor, N;
  	do{
- 		cout << "Ingrese valor: ";
- 		cin >> valor;
- 		insertarNodo(valor);
- 		cout << "\nQuiere agregar otro valor\n1.- Si\n2.- No\n: ";
+ 		cout << "Eliga una opcion:\n\n1.- Agregar datos\n2.- Terminar\n3.- Mostrar datos en orden ascendente\n...";
  		cin >> respuesta;
- 		system("cls");
-	 }while(respuesta == 1);
+ 		switch(respuesta){
+ 	 		case 1:
+ 	 			cout << "\nCantidad de datos: ";
+		 		cin >> N;
+		 		cout << endl;
+		 		for (int i=0; i<N; i++){
+		 			cout << "Ingrese dato " << i+1 << " : ";
+		 			cin >> valor;
+		 			insertarNodo(valor);
+				 }
+		 		break;
+ 			case 2:
+ 	  			mostrarNodos();
+ 	 			break;
+ 			case 3:
+ 	 			ordenarDatos(N);
+ 	 			break;
+ 			default:
+ 				cout << "Error. Opcion invalida...";
+ 				break;
+		 }
+	 	cin.get();
+	 	cin.get();
+	 	system("cls");
+	 }while(respuesta != 2);
  	
- 	cout << endl;
- 	mostrarNodos();
-  	cin.get();
  	return 0;
 }
 
@@ -48,8 +66,27 @@ void insertarNodo(int valor){
 	 }
 }
 
+void ordenarDatos(int N){
+ 	cout << "orden ascendente: " << endl;
+ 	for(int i= 0; i < N; i ++){
+ 		actual=inicio;
+	 	for(int j = 0; j < N; j++){
+ 			if(actual->dato > actual->siguiente->dato){
+ 				auxiliar1=actual->siguiente;
+ 				actual->siguiente=auxiliar->siguiente->siguiente;
+ 				auxiliar1->siguiente=actual;
+ 				auxiliar2->siguiente=auxiliar1;
+			 }
+		 	auxiliar2=actual;
+		 	actual=actual->siguiente;
+		 }
+	 }
+ 	mostrarNodos();
+} 
+
 void mostrarNodos(){
  	actual=inicio;
+ 	cout << endl;
  	while(actual!=NULL){
 		cout << "-> " << actual->dato << "  ";
 		actual=actual->siguiente;
